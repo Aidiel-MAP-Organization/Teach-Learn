@@ -1,6 +1,7 @@
 import 'package:exercise3/models/subject.dart';
 import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
+import 'package:exercise3/screens/myprofile/myprofile.dart';
 import 'package:exercise3/screens/register/register.dart';
 import 'package:exercise3/screens/teach/teachscreen.dart';
 import 'package:exercise3/screens/trylogin/trylogin.dart';
@@ -21,7 +22,7 @@ Route<dynamic> createRoute(settings) {
     case '/register':
       return RegisterScreen.route();
 
-    case '/':
+
     case '/trylogin':
       return TryLogin.route();
      
@@ -30,6 +31,10 @@ Route<dynamic> createRoute(settings) {
 
     case '/teachscreen':
       return TeachScreen.route(user: settings.arguments as User);
+
+    case '/':
+    case '/myprofile':
+      return MyProfile.route();
 
   }
   return null;
