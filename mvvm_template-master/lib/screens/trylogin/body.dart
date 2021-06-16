@@ -10,22 +10,17 @@ class Body extends StatelessWidget {
     final User _user = await viewmodel.authenticate();
 
     if (_user != null){
-      Text(
-        'Registration Success',
-        style: TextStyle(color: Colors.green, fontSize: 20.0),
-      );
         print(_user.subject);
         final List<Subject> subject = await viewmodel.getSubject(subjectCode:_user.subject);
-      //  print('subjects/$a');
-     //   print(subject);'users?login=$login&&password=$password'
-        print(subject[0].id);
-        Navigator.pushNamed(context, '/homescreen'); 
-    }
-    else{
-      Text(
-        'Registration Failed',
-        style: TextStyle(color: Colors.red, fontSize: 20.0),
-      );
+        if(subject!= null){
+          for(int i=0;i<subject.length;i++){
+            _user.setsubjectList(value:subject[i]);
+            print('set subject done' + _user.subjectList[i].title);
+          }
+        }
+      // print(_user);
+      //   print(subject[0].price);
+        Navigator.pushNamed(context, '/homescreen', arguments: _user); 
     }
   }
 

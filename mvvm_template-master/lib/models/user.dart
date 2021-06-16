@@ -8,6 +8,7 @@ class User {
   String _login;
   String _password;
   List <dynamic>_subject;
+  List <Subject> _subjectList = [];
 
   // ignore: unnecessary_getters_setters
   get id => _id;
@@ -16,6 +17,14 @@ class User {
 
   get name => _name;
   set name(value) => _name = value;
+
+  get subjectList => _subjectList;
+  // set setsubjectList(Subject value){
+    
+  // }
+  void setsubjectList({Subject value}) {
+      _subjectList.add(value);
+  }
 
   get photoUrl => _photoUrl;
   set photoUrl(value) => _photoUrl = value;
@@ -70,4 +79,6 @@ class User {
         'password': password,
         'subject' : subject,
       };
+
+
 }

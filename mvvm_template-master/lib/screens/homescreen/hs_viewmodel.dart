@@ -5,7 +5,11 @@ class HomescreenViewmodel extends Viewmodel {
   User _user = User();
 
   get user => _user;
-  set user(value) => _user = value;
+  //set user(value) => _user = value;
+
+  void setUser(User value) {
+    this._user = value;
+  }
 
   get username => _user.login;
   set username(value) {

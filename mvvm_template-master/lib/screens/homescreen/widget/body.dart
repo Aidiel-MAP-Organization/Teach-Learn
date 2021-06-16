@@ -3,30 +3,32 @@ import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
+   final HomescreenViewmodel _viewmodel;
+   const Body(HomescreenViewmodel viewmodel) : _viewmodel = viewmodel;
 
   @override
   Widget build(BuildContext context) {
     return View(
       viewmodel: HomescreenViewmodel(),
-      builder: (context, viewmodel, _) => _buildListview(),
+      builder: (context, _viewmodel, _) => _buildListview(),
     );
   }
 
     ListView _buildListview() {
     return ListView.separated(
-      itemCount: 3,
+      itemCount: _viewmodel.user.subjectList.length,
       separatorBuilder: (context, index) => Divider(
         height: 0,
-        color: Colors.black,
+        color: Colors.white,
       ),
       itemBuilder: (context, index) => Container(
-        color: Colors.greenAccent,
+        color: Colors.white,
         child: Card(
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(44),
           side: BorderSide(
-            color: Colors.grey.withOpacity(0.2),
+            color: Colors.black.withOpacity(1),
              width: 1,
           )
         ),
@@ -49,11 +51,11 @@ class Body extends StatelessWidget {
                   right: 16,
                   left: 16,
                   child: Text(
-                    'Cats rule the world!',
+                    _viewmodel.user.subjectList[index].title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 40,
                     ),
                   ),
                 ),
@@ -62,8 +64,8 @@ class Body extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(16).copyWith(bottom: 0),
               child: Text(
-                'The cat is the only domesticated species in the family Felidae and is often referred to as the domestic cat to distinguish it from the wild members of the family.',
-                style: TextStyle(fontSize: 16),
+                _viewmodel.user.subjectList[index].description,
+                style: TextStyle(fontSize: 20),
               ),
             ),
             ButtonBar(
@@ -78,7 +80,9 @@ class Body extends StatelessWidget {
                 ),
                 TextButton(
                   child: Text('Buy Cat Food'),
-                  onPressed: () {},
+                  onPressed: () {
+                    print('hello');
+                  },
                 )
               ],
             )

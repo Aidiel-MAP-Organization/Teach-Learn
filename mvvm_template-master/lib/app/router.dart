@@ -1,3 +1,5 @@
+import 'package:exercise3/models/subject.dart';
+import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
 import 'package:exercise3/screens/register/register.dart';
 import 'package:exercise3/screens/trylogin/trylogin.dart';
@@ -8,7 +10,7 @@ import '../screens/main/main_screen.dart';
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
     
-    case '/':
+    
     case '/main':
       return MainScreen.route();
     
@@ -19,13 +21,13 @@ Route<dynamic> createRoute(settings) {
     case '/register':
       return RegisterScreen.route();
 
-    
+    case '/':
     case '/trylogin':
       return TryLogin.route();
     
     
     case '/homescreen':
-      return HomeScreen.route();
+      return HomeScreen.route(user: settings.arguments as User);
 
   }
   return null;
