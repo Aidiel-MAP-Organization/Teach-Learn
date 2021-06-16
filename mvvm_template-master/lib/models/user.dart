@@ -8,7 +8,9 @@ class User {
   String _login;
   String _password;
   List <dynamic>_subject;
+  List <dynamic>_teach;
   List <Subject> _subjectList = [];
+  List <Subject> _teachSubjectList = [];
 
   // ignore: unnecessary_getters_setters
   get id => _id;
@@ -26,6 +28,14 @@ class User {
       _subjectList.add(value);
   }
 
+  get teachSubjectList => _teachSubjectList;
+  // set setsubjectList(Subject value){
+    
+  // }
+  void setTeachubjectList({Subject value}) {
+      _teachSubjectList.add(value);
+  }
+
   get photoUrl => _photoUrl;
   set photoUrl(value) => _photoUrl = value;
 
@@ -38,19 +48,24 @@ class User {
   get subject => _subject;
   set subject(value) => _subject = value;
 
+  get teach => _teach;
+  set teach(value) => _teach = value;
+
   User(
       {dynamic id,
       String name = '',
       String photoUrl = '',
       String login = '',
       String password = '',
-      List subject})
+      List subject,
+      List teach})
       : _id = id,
         _name = name,
         _photoUrl = photoUrl,
         _login = login,
         _password = password,
-        _subject = subject;
+        _subject = subject,
+        _teach = teach;
 
   User.copy(User from)
       : this(
@@ -59,7 +74,8 @@ class User {
             photoUrl: from.photoUrl,
             login: from.login,
             password: from.password,
-            subject: from.subject);
+            subject: from.subject,
+            teach: from.teach);
 
   User.fromJson(Map<String, dynamic> json)
       : this(
@@ -68,7 +84,8 @@ class User {
           photoUrl: json['photoUrl'],
           login: json['login'],
           password: json['password'],
-          subject: json['subject']
+          subject: json['subject'],
+          teach: json['teach']
       );
 
   Map<String, dynamic> toJson() => {
@@ -78,6 +95,7 @@ class User {
         'login': login,
         'password': password,
         'subject' : subject,
+        'teach' : teach,
       };
 
 

@@ -8,14 +8,23 @@ class Body extends StatelessWidget {
 
   void _onLogin(BuildContext context, LoginViewmodel viewmodel) async {
     final User _user = await viewmodel.authenticate();
-
+    print(_user.teach[0]+'asssaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     if (_user != null){
         print(_user.subject);
+        print(_user.teach);
         final List<Subject> subject = await viewmodel.getSubject(subjectCode:_user.subject);
         if(subject!= null){
           for(int i=0;i<subject.length;i++){
             _user.setsubjectList(value:subject[i]);
             print('set subject done' + _user.subjectList[i].title);
+          }
+        }
+        print('subjek beli setel');
+        final List<Subject> teachsubject = await viewmodel.getSubject(subjectCode:_user.teach);
+        if(teachsubject!= null){
+          for(int i=0;i<teachsubject.length;i++){
+            _user.setTeachubjectList(value:teachsubject[i]);
+            print('set teach subject done' + _user.teachSubjectList[i].title);
           }
         }
       // print(_user);

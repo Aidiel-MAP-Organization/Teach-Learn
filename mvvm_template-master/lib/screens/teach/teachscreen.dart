@@ -2,28 +2,29 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:exercise3/models/subject.dart';
 import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/homescreen/widget/bar.dart';
-import 'package:exercise3/screens/homescreen/widget/body.dart';
+import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
+import 'package:exercise3/screens/teach/widget/body.dart';
+import 'package:exercise3/screens/teach/widget/float.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'hs_viewmodel.dart';
-
-class HomeScreen extends StatefulWidget {
+class TeachScreen extends StatefulWidget {
   static Route route({user}) =>
-      MaterialPageRoute(builder: (context) => HomeScreen(user: user));
+      MaterialPageRoute(builder: (context) => TeachScreen(user: user));
 
   final User _user;
 
-  HomeScreen({user})
+  TeachScreen({user})
       : _user = user;
 
   @override
-  _HomeScreen createState() => _HomeScreen();
+  _TeachScreen createState() => _TeachScreen();
 }
   
-  class _HomeScreen extends State<HomeScreen>{
-  int _selectedIndex = 0;
+  class _TeachScreen extends State<TeachScreen>{
+
+  int _selectedIndex = 1;
 
       @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class HomeScreen extends StatefulWidget {
       onWillPop: () => Future.value(false),
       child: SafeArea(
         child: View(
-          viewmodel: HomescreenViewmodel(),
+          viewmodel: TeachscreenViewModel(),
           builder: (_, mainViewmodel, __){
             mainViewmodel.setUser(widget._user);
             return Scaffold(
@@ -67,7 +68,8 @@ class HomeScreen extends StatefulWidget {
                     activeColor: Colors.pink
                 ),
                ],
-               )
+              ),
+              floatingActionButton: Float(mainViewmodel),
             );
           }
         ),

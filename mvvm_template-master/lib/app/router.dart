@@ -2,6 +2,7 @@ import 'package:exercise3/models/subject.dart';
 import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
 import 'package:exercise3/screens/register/register.dart';
+import 'package:exercise3/screens/teach/teachscreen.dart';
 import 'package:exercise3/screens/trylogin/trylogin.dart';
 import 'package:flutter/material.dart';
 import '../screens/login/login_screen.dart';
@@ -14,7 +15,6 @@ Route<dynamic> createRoute(settings) {
     case '/main':
       return MainScreen.route();
     
-    
     case '/login':
       return LoginScreen.route();
   
@@ -24,10 +24,12 @@ Route<dynamic> createRoute(settings) {
     case '/':
     case '/trylogin':
       return TryLogin.route();
-    
-    
+     
     case '/homescreen':
       return HomeScreen.route(user: settings.arguments as User);
+
+    case '/teachscreen':
+      return TeachScreen.route(user: settings.arguments as User);
 
   }
   return null;
