@@ -36,6 +36,10 @@ class User {
       _teachSubjectList.add(value);
   }
 
+  void setTeachCode(String value) {
+      _teach.add(value);
+  }
+
   get photoUrl => _photoUrl;
   set photoUrl(value) => _photoUrl = value;
 

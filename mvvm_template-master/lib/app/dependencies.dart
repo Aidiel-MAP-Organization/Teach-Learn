@@ -1,3 +1,4 @@
+import 'package:exercise3/services/addsubject/add_service_rest.dart';
 import 'package:exercise3/services/register_service/reg_service_rest.dart';
 import 'package:get_it/get_it.dart';
 
@@ -28,6 +29,7 @@ void init() {
    //dependency.registerLazySingleton<CounterService>(() => CounterServiceMock());
    //dependency.registerLazySingleton<AuthService>(() => AuthServiceMock());
   dependency.registerLazySingleton(() => RegServiceRest());
+  dependency.registerLazySingleton(() => AddServiceRest());
   // Viewmodels
   dependency.registerLazySingleton(() => UserViewmodel());
 }

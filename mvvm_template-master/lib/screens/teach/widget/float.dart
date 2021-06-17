@@ -7,6 +7,10 @@ class Float extends StatelessWidget {
   final TeachscreenViewModel _viewmodel;
   const Float(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
+  void _onTap(BuildContext context, TeachscreenViewModel viewmodel){
+    Navigator.pushNamed(context, '/editSubject', arguments: viewmodel.user);
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -17,7 +21,7 @@ class Float extends StatelessWidget {
           tooltip: 'Add a new todo',
           child: Icon(Icons.add),
           heroTag: null,
-          onPressed: () {},
+          onPressed: () => _onTap(context, _viewmodel),
         ),
       ],
     );

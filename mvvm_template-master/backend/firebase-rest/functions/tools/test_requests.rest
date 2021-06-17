@@ -20,12 +20,11 @@ GET {{baseUrl}}/users?login=danial&password=4444
 GET {{baseUrl}}/subjects/Nna3Efpuw61DO09TGYxa
 
 ### Request 3 : Update the information of a given counter
-PUT {{baseUrl}}/counters/counter1
+PUT {{baseUrl}}/users/VypSjdQk37gLbZvzctcs
 Content-Type: application/json
 
 {
-    "user": "user1",
-    "counter": 2
+    "password": "try"
 }
 
 ### Request: Get all users
@@ -37,9 +36,9 @@ Content-Type: application/json
 
 {
     "counter": 0,
-    "description": "123",
+    "description": "try",
     "price": 10,
-    "title": "user4"
+    "title": "try"
 }
 
 ### Request: Delete a user

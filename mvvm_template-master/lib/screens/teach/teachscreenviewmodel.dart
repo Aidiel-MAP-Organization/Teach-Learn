@@ -1,8 +1,18 @@
+import 'package:exercise3/app/dependencies.dart';
+import 'package:exercise3/models/subject.dart';
+import 'package:exercise3/services/addsubject/add_service_rest.dart';
+
 import '../../models/user.dart';
 import '../viewmodel.dart';
 
 class TeachscreenViewModel extends Viewmodel {
+  AddServiceRest get _service => dependency();
   User _user = User();
+  String _title;
+  String _description;
+  String _price;
+  int _counter;
+
 
   get user => _user;
   //set user(value) => _user = value;
@@ -30,4 +40,38 @@ class TeachscreenViewModel extends Viewmodel {
   set subject(value) {
     _user.subject = value;
   }
+
+  get title => _title;
+  set title(value) {
+    this._title = value;
+  }
+
+  get description => _description;
+  set description(value) {
+    _description = value;
+  }
+
+  get price => _price;
+  set price(value) {
+    _price = value;
+  }
+
+  get counter => _counter;
+  set counter(value) {
+    _counter = value;
+  }
+
+  Future<Subject> addnewSubject(Subject newsubject) async {
+    turnBusy();
+    final Subject a = await _service.addSubject(newsubject);
+    return a;
+  }
+
+  Future<User> updateUser(User user) async {
+    turnBusy();
+    final User a = await _service.updateUser(user);
+    return a;
+  }
+
+
 }
