@@ -3,6 +3,7 @@ import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
 import 'package:exercise3/screens/myprofile/myprofile.dart';
 import 'package:exercise3/screens/register/register.dart';
+import 'package:exercise3/screens/subjectpage/subjectpage.dart';
 import 'package:exercise3/screens/teach/editsubject.dart';
 import 'package:exercise3/screens/teach/teachscreen.dart';
 import 'package:exercise3/screens/trylogin/trylogin.dart';
@@ -38,6 +39,10 @@ Route<dynamic> createRoute(settings) {
 
     case '/myprofile':
       return MyProfile.route();
+
+    
+    case '/subjectPage':
+    return SubjectPage.route();
 
   }
   return null;

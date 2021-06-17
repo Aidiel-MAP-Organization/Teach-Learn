@@ -5,19 +5,19 @@ import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:exercise3/models/user.dart';
 
-class MyProfile extends StatefulWidget {
-  static Route route({user}) =>
-      MaterialPageRoute(builder: (context) => MyProfile(user: user));
+class SubjectPage extends StatefulWidget {
+  static Route route() =>
+      MaterialPageRoute(builder: (context) => SubjectPage());
 
   final User _user;
-    MyProfile({user})
+    SubjectPage({user})
       : _user = user;
 
   @override
-  _MyProfileState createState() => _MyProfileState();
+  _SubjectPageState createState() => _SubjectPageState();
 }
 
-class _MyProfileState extends State<MyProfile> {
+class _SubjectPageState extends State<SubjectPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

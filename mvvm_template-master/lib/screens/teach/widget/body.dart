@@ -7,6 +7,10 @@ class Body extends StatelessWidget {
    final TeachscreenViewModel _viewmodel;
    const Body(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
+  void _onDelete(BuildContext context, index){
+
+  }
+  
   @override
   Widget build(BuildContext context) {
     return View(
@@ -76,14 +80,12 @@ class Body extends StatelessWidget {
                   style: TextButton.styleFrom(
                     primary: Colors.green,
                   ),
-                  child: Text('Buy Cat'),
+                  child: Text('Access'),
                   onPressed: () {},
                 ),
                 TextButton(
-                  child: Text('Buy Cat Food'),
-                  onPressed: () {
-                    print('hello');
-                  },
+                  child: Text('Delete'),
+                  onPressed: () => _onDelete(context,index),
                 )
               ],
             )
