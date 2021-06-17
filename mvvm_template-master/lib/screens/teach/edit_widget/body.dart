@@ -85,6 +85,7 @@ class Body extends StatelessWidget {
     print(viewmodel.user.teach[2]);
     User updateUser = await viewmodel.updateUser(viewmodel.user);
     print(updateUser.id);
+    Navigator.pop(context, updateUser);
   }
 
    void _onCancelPressed(context) => Navigator.pop(context, null);
