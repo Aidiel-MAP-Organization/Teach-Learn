@@ -13,21 +13,18 @@ import '../screens/main/main_screen.dart';
 
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
-    
-    
     case '/main':
       return MainScreen.route();
-    
+
     case '/login':
       return LoginScreen.route();
-  
+
     case '/register':
       return RegisterScreen.route();
 
-    case '/': 
     case '/trylogin':
       return TryLogin.route();
-     
+
     case '/homescreen':
       return HomeScreen.route(user: settings.arguments as User);
 
@@ -35,15 +32,14 @@ Route<dynamic> createRoute(settings) {
       return TeachScreen.route(user: settings.arguments as User);
 
     case '/editSubject':
-    return EditSubject.route(user: settings.arguments as User);
+      return EditSubject.route(user: settings.arguments as User);
 
+    case '/':
     case '/myprofile':
       return MyProfile.route();
 
-    
     case '/subjectPage':
-    return SubjectPage.route();
-
+      return SubjectPage.route();
   }
   return null;
 }
