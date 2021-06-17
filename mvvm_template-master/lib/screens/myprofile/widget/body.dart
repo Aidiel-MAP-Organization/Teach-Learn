@@ -1,37 +1,17 @@
+import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
-  Widget textfield({@required hintText}) {
-    return Material(
-      elevation: 4,
-      shadowColor: Colors.grey,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyle(
-              letterSpacing: 2,
-              color: Colors.black54,
-              fontWeight: FontWeight.bold,
-            ),
-            fillColor: Colors.white30,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide.none)),
-      ),
-    );
-  }
+  final MyProfileViewModel _viewmodel; 
+  const Body(MyProfileViewModel viewmodel) : _viewmodel = viewmodel;
 
     @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Color(0xff555555),
+        backgroundColor: Color(0xFF00AF19),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -40,104 +20,111 @@ class Body extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: Stack(
-        alignment: Alignment.center,
+      body:SafeArea(
+          child: Column(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 450,
-                width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    textfield(
-                      hintText: 'Username',
-                    ),
-                    textfield(
-                      hintText: 'Email',
-                    ),
-                    textfield(
-                      hintText: 'Password',
-                    ),
-                    textfield(
-                      hintText: 'Confirm password',
-                    ),
-                    Container(
-                      height: 55,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},                       
-                        child: Center(
-                          child: Text(
-                            "Update",
-                            style: TextStyle(
-                              fontSize: 23,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
+          _getHeader(),
+          SizedBox(
+            height: 10,
           ),
-          CustomPaint(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-            ),
-            painter: HeaderCurvedContainer(),
+          _heading("Personal Details"),
+          SizedBox(
+            height: 6,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  "Profile",
-                  style: TextStyle(
-                    fontSize: 35,
-                    letterSpacing: 1.5,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10.0),
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.width / 2,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 5),
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage('https://randomuser.me/api/portraits/thumb/men/75.jpg'),
-                  ),
-                ),
-              ),
-            ],
+          _detailsCard(),
+          SizedBox(
+            height: 10,
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 270, left: 184),
-            child: CircleAvatar(
-              backgroundColor: Colors.black54,
-              child: IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-            ),
-          )
+          _heading("Settings"),
+          SizedBox(
+            height: 6,
+          ),
+          _settingsCard(),
+          Spacer(),
         ],
+      )),
+    );
+  }
+Widget _heading(String heading) {
+    return Container(
+  //    width: MediaQuery.of(context).size.width * 0.80, //80% of width,
+      child: Text(
+        heading,
+        style: TextStyle(fontSize: 16),
+      ),
+    );
+  }
+Widget _getHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+                //borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(
+                        "https://eportfolio.utm.my/thumb.php?type=profileiconbyid&maxwidth=100&maxheight=100&id=493215"))
+                // color: Colors.orange[100],
+                ),
+          ),
+        ),
+      ],
+    );
+  }
+Widget _detailsCard() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 4,
+        child: Column(
+          children: [
+            //row for each deatails
+            ListTile(
+              leading: Icon(Icons.account_circle_sharp),
+              title: Text("danial"),
+            ),
+            Divider(
+              height: 0.6,
+              color: Colors.black87,
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle_outlined),
+              title: Text("Muhammad Danial"),
+            ),
+            Divider(
+              height: 0.6,
+              color: Colors.black87,
+            ),
+            ListTile(
+              leading: Icon(Icons.lock_outlined),
+              title: Text("4444"),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _settingsCard() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 4,
+        child: Column(
+          children: [
+            //row for each deatails
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Update profile"),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -147,7 +134,7 @@ class Body extends StatelessWidget {
 class HeaderCurvedContainer extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()..color = Color(0xff555555);
+    Paint paint = Paint()..color = Color(0xFF00AF19);
     Path path = Path()
       ..relativeLineTo(0, 150)
       ..quadraticBezierTo(size.width / 2, 225, size.width, 150)
@@ -159,3 +146,4 @@ class HeaderCurvedContainer extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
+

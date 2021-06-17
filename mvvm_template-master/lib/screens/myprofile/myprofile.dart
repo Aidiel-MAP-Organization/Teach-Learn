@@ -1,6 +1,5 @@
 import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
-import 'package:exercise3/screens/myprofile/widget/bar.dart';
-import 'package:exercise3/screens/subjectpage/body.dart';
+import 'package:exercise3/screens/myprofile/widget/body.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:exercise3/models/user.dart';
@@ -27,7 +26,7 @@ class _MyProfileState extends State<MyProfile> {
           viewmodel: MyProfileViewModel(),
           builder: (_, mainViewmodel, __){
             return Scaffold(
-              body: Body(),
+              body: Body(mainViewmodel),
             );
           },
         )
