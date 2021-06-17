@@ -35,7 +35,7 @@ class HomeScreen extends StatefulWidget {
           builder: (_, mainViewmodel, __){
             mainViewmodel.setUser(widget._user);
             return Scaffold(
-              appBar: Bar(),
+              appBar: Bar(mainViewmodel),
               body: Body(mainViewmodel),
               bottomNavigationBar: BottomNavyBar(
               selectedIndex: _selectedIndex,

@@ -8,6 +8,7 @@ class Float extends StatelessWidget {
   const Float(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
   void _onTap(BuildContext context, TeachscreenViewModel viewmodel){
+    print(viewmodel.user.teach);
     Navigator.pushNamed(context, '/editSubject', arguments: viewmodel.user);
   }
 

@@ -1,8 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:exercise3/models/user.dart';
-import 'package:exercise3/screens/homescreen/widget/bar.dart';
 import 'package:exercise3/screens/teach/edit_widget/body.dart';
 import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
+import 'package:exercise3/screens/teach/widget/bar.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,7 +34,7 @@ class EditSubject extends StatefulWidget {
           builder: (_, mainViewmodel, __){
             mainViewmodel.setUser(widget._user);
             return Scaffold(
-              appBar: Bar(),
+              appBar: Bar(mainViewmodel),
               body: Body(mainViewmodel),
               bottomNavigationBar: BottomNavyBar(
               selectedIndex: _selectedIndex,

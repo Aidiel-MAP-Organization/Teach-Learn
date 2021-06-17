@@ -8,8 +8,47 @@ class Body extends StatelessWidget {
    final TeachscreenViewModel _viewmodel;
    const Body(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
+  void _onOkPressed(context, TeachscreenViewModel viewmodel) async{
+    
+    getUpdateUser(viewmodel);
+    // Subject newSubject = new Subject(
+    //   title: viewmodel.title,
+    //   description: viewmodel.description,
+    //   price: int.parse(viewmodel.price),
+    //   counter: 0,
+    // );
+    //  print(viewmodel.user.name);
+    // // print(newsubject.price);
+    // Subject a = await viewmodel.addnewSubject();
+    // viewmodel.user.setTeachCode(a.id);
+    // print(viewmodel.user.teach[2]);
+    // User updateUser = await viewmodel.updateUser(viewmodel.user);
+    // print(updateUser.id);
+    // viewmodel.setUser(updateUser);
+    // if(updateUser != null){
+    //   Navigator.pushNamed(context, '/register');
+    // }
+    //Navigator.pop(context, null);
+    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
+    
+  }
+
+  void getUpdateUser(TeachscreenViewModel viewmodel) async{
+     print(viewmodel.user.name);
+    // print(newsubject.price);
+    Subject a = await viewmodel.addnewSubject();
+    viewmodel.user.setTeachCode(a.id);
+    print(viewmodel.user.teach[2]);
+    User updateUser = await viewmodel.updateUser(viewmodel.user);
+    print(updateUser.id);
+    viewmodel.setUser(updateUser);
+    print(viewmodel.user.teach[2]);
+  }
+
+   void _onCancelPressed(context) => Navigator.pop(context, null);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext _context) {
 
     return View(
       viewmodel: TeachscreenViewModel(),
@@ -68,26 +107,6 @@ class Body extends StatelessWidget {
     );
   }
 
-  void _onOkPressed(context, TeachscreenViewModel viewmodel) async{
-    
-
-    Subject newSubject = new Subject(
-      title: viewmodel.title,
-      description: viewmodel.description,
-      price: int.parse(viewmodel.price),
-      counter: 0,
-    );
-
-    print(viewmodel.user.name);
-    print(newSubject.price);
-    Subject a = await viewmodel.addnewSubject(newSubject);
-    viewmodel.user.setTeachCode(a.id);
-    print(viewmodel.user.teach[2]);
-    User updateUser = await viewmodel.updateUser(viewmodel.user);
-    print(updateUser.id);
-    Navigator.pop(context, updateUser);
-  }
-
-   void _onCancelPressed(context) => Navigator.pop(context, null);
+  
 
 }

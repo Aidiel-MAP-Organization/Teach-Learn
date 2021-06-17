@@ -61,9 +61,20 @@ class TeachscreenViewModel extends Viewmodel {
     _counter = value;
   }
 
-  Future<Subject> addnewSubject(Subject newsubject) async {
+  Subject setnewSubject(){
+    Subject newSubject = new Subject(
+      title: _title,
+      description: _description,
+      price: int.parse(_price),
+      counter: 0,
+    );
+    return newSubject;
+  }
+
+  Future<Subject> addnewSubject() async {
+    Subject m = setnewSubject();
     turnBusy();
-    final Subject a = await _service.addSubject(newsubject);
+    final Subject a = await _service.addSubject(m);
     return a;
   }
 
