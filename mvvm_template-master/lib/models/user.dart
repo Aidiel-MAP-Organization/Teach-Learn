@@ -36,6 +36,10 @@ class User {
       _teachSubjectList.add(value);
   }
 
+  void insertNewTeachSubject(Subject value) {
+      _teachSubjectList.add(value);
+  }
+
   void setTeachCode(String value) {
       _teach.add(value);
   }

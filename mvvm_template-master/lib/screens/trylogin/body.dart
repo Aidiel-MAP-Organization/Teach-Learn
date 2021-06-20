@@ -3,12 +3,12 @@ import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/login/login_viewmodel.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Body extends StatelessWidget {
 
   void _onLogin(BuildContext context, LoginViewmodel viewmodel) async {
     final User _user = await viewmodel.authenticate();
-    print(_user.teach[0]+'asssaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     if (_user != null){
         print(_user.subject);
         print(_user.teach);
@@ -72,6 +72,7 @@ class Body extends StatelessWidget {
           TextFormField(
               decoration: InputDecoration(
                   labelText: 'USERNAME',
+                  prefixIcon: Icon(FontAwesomeIcons.user),
                   labelStyle: TextStyle(
                       fontFamily: 'Trueno',
                       fontSize: 12.0,
@@ -83,6 +84,7 @@ class Body extends StatelessWidget {
           TextFormField(
               decoration: InputDecoration(
                   labelText: 'PASSWORD',
+                  prefixIcon: Icon(FontAwesomeIcons.unlock),
                   labelStyle: TextStyle(
                       fontFamily: 'Trueno',
                       fontSize: 12.0,

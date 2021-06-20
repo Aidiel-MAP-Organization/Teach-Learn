@@ -17,20 +17,10 @@ class _BodyState extends State<Body> {
 
   _BodyState(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
-  void _onDelete(BuildContext context, index, TeachscreenViewModel viewmodel)async{
-
-    delete(viewmodel, index);
-    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
-  }
-
-  void delete(TeachscreenViewModel viewmodel, index)async{
-    viewmodel.removeSubject(viewmodel.user.teach[index]);
-     setState(() {
-       viewmodel.user.teachSubjectList.removeAt(index);
-       viewmodel.user.teach.removeAt(index);
-      
-     });
-    viewmodel.updateUser(viewmodel.user);
+  void _onDelete(BuildContext context, index, TeachscreenViewModel viewmodel){
+    viewmodel.user.teachSubjectList.removeAt(index);
+    viewmodel.user._teach.removeAt(index);
+    print(viewmodel.user.teach);
   }
 
   void _onAccess(BuildContext context){

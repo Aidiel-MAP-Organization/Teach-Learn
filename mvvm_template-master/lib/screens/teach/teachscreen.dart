@@ -1,5 +1,4 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:exercise3/models/subject.dart';
 import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
 import 'package:exercise3/screens/teach/widget/bar.dart';
@@ -24,6 +23,11 @@ class TeachScreen extends StatefulWidget {
   
   class _TeachScreen extends State<TeachScreen>{
 
+  void update(){
+    setState(() {
+      });
+  }
+
   int _selectedIndex = 1;
 
       @override
@@ -35,6 +39,7 @@ class TeachScreen extends StatefulWidget {
           viewmodel: TeachscreenViewModel(),
           builder: (_, mainViewmodel, __){
             mainViewmodel.setUser(widget._user);
+           // setState(() => mainViewmodel.setUser(widget._user));
             return Scaffold(
               appBar: Bar(mainViewmodel),
               body: Body(mainViewmodel),
@@ -48,24 +53,24 @@ class TeachScreen extends StatefulWidget {
                 } else if(index==1){
                   Navigator.pushNamed(context, '/teachscreen', arguments: widget._user);
                 }else{
-                   Navigator.pushNamed(context, '/register');
+                   Navigator.pushNamed(context, '/myprofile');
                 }
                }),
               items: [
                 BottomNavyBarItem(
                   icon: Icon(FontAwesomeIcons.graduationCap, size: 30),
                   title: Text('Learn'),
-                  activeColor: Colors.red,
+                  activeColor: Colors.green,
                 ),
                 BottomNavyBarItem(
                     icon: Icon(FontAwesomeIcons.chalkboardTeacher, size: 30),
                     title: Text('Teach'),
-                    activeColor: Colors.purpleAccent
+                    activeColor: Colors.green
                 ),
                 BottomNavyBarItem(
                     icon: Icon(FontAwesomeIcons.userAlt, size: 30),
                     title: Text('MyProfile'),
-                    activeColor: Colors.pink
+                    activeColor: Colors.green
                 ),
                ],
               ),

@@ -40,17 +40,20 @@ class _BodyState extends State<Body> {
     // }
     //Navigator.pop(context, null);
     //Navigator.pop(context, viewmodel.user);
-
     Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
-    
   }
 
   void getUpdateUser(TeachscreenViewModel viewmodel) async{
+    print(viewmodel.user.name);
+    // print(newsubject.price);
     Subject a = await viewmodel.addnewSubject();
-      viewmodel.user.setTeachCode(a.id);
-      viewmodel.user.insertNewTeachSubject(a);
+    viewmodel.user.setTeachCode(a.id);
+    viewmodel.user.insertNewTeachSubject(a);
+    print(viewmodel.user.teach[2]);
     User updateUser = await viewmodel.updateUser(viewmodel.user);
+    print(updateUser.id);
     viewmodel.setUser(updateUser);
+    print(viewmodel.user.teach[2]);
   }
 
    void _onCancelPressed(context) => Navigator.pop(context, null);

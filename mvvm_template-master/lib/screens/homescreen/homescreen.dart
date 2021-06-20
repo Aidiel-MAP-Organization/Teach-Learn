@@ -47,24 +47,24 @@ class HomeScreen extends StatefulWidget {
                 } else if(index==1){
                   Navigator.pushNamed(context, '/teachscreen', arguments: widget._user);
                 }else{
-                   Navigator.pushNamed(context, '/register');
+                   Navigator.pushNamed(context, '/myprofile');
                 }
                }),
               items: [
                 BottomNavyBarItem(
                   icon: Icon(FontAwesomeIcons.graduationCap, size: 30),
                   title: Text('Learn'),
-                  activeColor: Colors.red,
+                  activeColor: Colors.green,
                 ),
                 BottomNavyBarItem(
                     icon: Icon(FontAwesomeIcons.chalkboardTeacher, size: 30),
                     title: Text('Teach'),
-                    activeColor: Colors.purpleAccent
+                    activeColor: Colors.green
                 ),
                 BottomNavyBarItem(
                     icon: Icon(FontAwesomeIcons.userAlt, size: 30),
                     title: Text('MyProfile'),
-                    activeColor: Colors.pink
+                    activeColor: Colors.green
                 ),
                ],
                )

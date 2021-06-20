@@ -1,5 +1,6 @@
 import 'package:exercise3/models/subject.dart';
 import 'package:exercise3/models/user.dart';
+import 'package:exercise3/screens/homescreen/buyscreen.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
 import 'package:exercise3/screens/myprofile/myprofile.dart';
 import 'package:exercise3/screens/register/register.dart';
@@ -13,18 +14,21 @@ import '../screens/main/main_screen.dart';
 
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
+    
+    
     case '/main':
       return MainScreen.route();
-
+    
     case '/login':
       return LoginScreen.route();
-
+  
     case '/register':
       return RegisterScreen.route();
 
+    case '/':
     case '/trylogin':
       return TryLogin.route();
-
+     
     case '/homescreen':
       return HomeScreen.route(user: settings.arguments as User);
 
@@ -32,14 +36,20 @@ Route<dynamic> createRoute(settings) {
       return TeachScreen.route(user: settings.arguments as User);
 
     case '/editSubject':
-      return EditSubject.route(user: settings.arguments as User);
+    return EditSubject.route(user: settings.arguments as User);
 
-    case '/':
+    
+    case '/buyscreen':
+      return BuyScreen.route(subject: settings.arguments as Subject);
+
+     
     case '/myprofile':
       return MyProfile.route();
 
+    
     case '/subjectPage':
-      return SubjectPage.route();
+    return SubjectPage.route();
+
   }
   return null;
 }

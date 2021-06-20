@@ -1,54 +1,16 @@
-import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
-import 'package:exercise3/screens/view.dart';
+import 'package:exercise3/models/subject.dart';
+import 'package:exercise3/screens/homescreen/buyscreen.dart';
 import 'package:flutter/material.dart';
 
-class Body extends StatefulWidget {
-  final TeachscreenViewModel _viewmodel;
-
-  const Body(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
-
-  @override
-  _BodyState createState() => _BodyState(_viewmodel);
-}
-
-class _BodyState extends State<Body> {
-
-  final TeachscreenViewModel _viewmodel;
-
-  _BodyState(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
-
-  void _onDelete(BuildContext context, index, TeachscreenViewModel viewmodel)async{
-
-    delete(viewmodel, index);
-    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
-  }
-
-  void delete(TeachscreenViewModel viewmodel, index)async{
-    viewmodel.removeSubject(viewmodel.user.teach[index]);
-     setState(() {
-       viewmodel.user.teachSubjectList.removeAt(index);
-       viewmodel.user.teach.removeAt(index);
-      
-     });
-    viewmodel.updateUser(viewmodel.user);
-  }
-
-  void _onAccess(BuildContext context){
-      Navigator.pushNamed(context, '/subjectPage');
-  }
-
+class Body extends StatelessWidget {
+   
+  const Body({subject}) : _subject = subject;
+  final Subject _subject; 
   
   @override
   Widget build(BuildContext context) {
-    return View(
-      viewmodel: TeachscreenViewModel(),
-      builder: (context, _viewmodel, _) => _buildListview(),
-    );
-  }
-
-    ListView _buildListview() {
     return ListView.separated(
-      itemCount: _viewmodel.user.teachSubjectList.length,
+      itemCount: 1,
       separatorBuilder: (context, index) => Divider(
         height: 0,
         color: Colors.white,
@@ -83,7 +45,7 @@ class _BodyState extends State<Body> {
                   right: 16,
                   left: 16,
                   child: Text(
-                    _viewmodel.user.teachSubjectList[index].title,
+                    _subject.title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -96,7 +58,7 @@ class _BodyState extends State<Body> {
             Padding(
               padding: EdgeInsets.all(16).copyWith(bottom: 0),
               child: Text(
-                _viewmodel.user.teachSubjectList[index].description,
+                _subject.description,
                 style: TextStyle(fontSize: 20),
               ),
             ),
@@ -107,12 +69,14 @@ class _BodyState extends State<Body> {
                   style: TextButton.styleFrom(
                     primary: Colors.green,
                   ),
-                  child: Text('Access'),
-                  onPressed: () => _onAccess(context),
+                  child: Text('Buy Cat'),
+                  onPressed: () {},
                 ),
                 TextButton(
-                  child: Text('Delete'),
-                  onPressed: () => _onDelete(context,index,_viewmodel),
+                  child: Text('Buy Cat Food'),
+                  onPressed: () {
+                    print('hello');
+                  },
                 )
               ],
             )
@@ -121,5 +85,8 @@ class _BodyState extends State<Body> {
       ),
       ) 
     );
-  }  
+  }
+
+
+
 }

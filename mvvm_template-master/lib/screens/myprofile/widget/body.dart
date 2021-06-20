@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
-  final MyProfileViewModel _viewmodel;
+  final MyProfileViewModel _viewmodel; 
   const Body(MyProfileViewModel viewmodel) : _viewmodel = viewmodel;
 
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -17,10 +17,12 @@ class Body extends StatelessWidget {
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
-      body: SafeArea(
+      body:SafeArea(
           child: Column(
         children: [
           _getHeader(),
@@ -35,6 +37,7 @@ class Body extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
+          _heading("Settings"),
           SizedBox(
             height: 6,
           ),
@@ -44,18 +47,16 @@ class Body extends StatelessWidget {
       )),
     );
   }
-
-  Widget _heading(String heading) {
+Widget _heading(String heading) {
     return Container(
-      //    width: MediaQuery.of(context).size.width * 0.80, //80% of width,
+  //    width: MediaQuery.of(context).size.width * 0.80, //80% of width,
       child: Text(
         heading,
         style: TextStyle(fontSize: 16),
       ),
     );
   }
-
-  Widget _getHeader() {
+Widget _getHeader() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -78,8 +79,7 @@ class Body extends StatelessWidget {
       ],
     );
   }
-
-  Widget _detailsCard() {
+Widget _detailsCard() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -116,13 +116,21 @@ class Body extends StatelessWidget {
   Widget _settingsCard() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Text('Update Profile'),
-        style: ElevatedButton.styleFrom(primary: Colors.green),
+      child: Card(
+        elevation: 4,
+        child: Column(
+          children: [
+            //row for each deatails
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Update profile"),
+            ),
+          ],
+        ),
       ),
     );
   }
+
 }
 
 class HeaderCurvedContainer extends CustomPainter {
@@ -140,3 +148,4 @@ class HeaderCurvedContainer extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
+

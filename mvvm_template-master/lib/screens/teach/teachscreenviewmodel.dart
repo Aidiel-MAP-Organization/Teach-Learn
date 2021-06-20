@@ -19,6 +19,7 @@ class TeachscreenViewModel extends Viewmodel {
 
   void setUser(User value) {
     this._user = value;
+    
   }
 
   get username => _user.login;
@@ -82,6 +83,12 @@ class TeachscreenViewModel extends Viewmodel {
     turnBusy();
     final User a = await _service.updateUser(user);
     return a;
+  }
+
+  Future<void> removeSubject(String subjectID) async {
+
+    await _service.removeSubject(subjectID);
+
   }
 
 

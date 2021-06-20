@@ -33,4 +33,18 @@ class AddServiceRest {
     else
       return null;
   }
+
+  Future<void> removeSubject(String id) async {
+    String json = 'subjects/'+id;
+    rest.delete(json);
+  }
+
+  Future<Subject> getSearchSubject(String title) async {
+    String subjectTitle = 'subjects/?title='+title; 
+    final List json = await rest.get(subjectTitle);
+    if (json == null || json.length == 0) return null;
+    final _result = Subject.fromJson(json[0]);
+    return _result;
+  }
+
 }
