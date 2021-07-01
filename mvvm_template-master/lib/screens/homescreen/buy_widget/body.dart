@@ -1,14 +1,46 @@
 import 'package:exercise3/models/subject.dart';
-import 'package:exercise3/screens/homescreen/buyscreen.dart';
+import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 
-class Body extends StatelessWidget {
-   
-  const Body({subject}) : _subject = subject;
+import '../hs_viewmodel.dart';
+
+
+class Body extends StatefulWidget {
+  final HomescreenViewmodel _viewmodel;
   final Subject _subject; 
-  
+  const Body(HomescreenViewmodel viewmodel,subject) 
+    : _viewmodel = viewmodel,_subject = subject;
+
+  @override
+  _BodyState createState() => _BodyState(_viewmodel,_subject);
+}
+
+class _BodyState extends State<Body> {
+
+  final HomescreenViewmodel _viewmodel;
+  final Subject _subject; 
+  _BodyState(HomescreenViewmodel viewmodel,subject) 
+    : _viewmodel = viewmodel,_subject = subject;
+
+  void _onBuy(HomescreenViewmodel _viewmodel,Subject subject){
+    print(subject.title);
+    setState(() {
+      _viewmodel.user.insertNewSubject(subject);
+      _viewmodel.user.setSubjectCode(subject.id);
+    });
+    _viewmodel.updateUser(_viewmodel.user);
+    Navigator.pushNamed(context, '/homescreen', arguments: _viewmodel.user);
+  }
+
   @override
   Widget build(BuildContext context) {
+    return View(
+      viewmodel: HomescreenViewmodel(),
+      builder: (context, _viewmodel, _) => _buildListview(),
+    );
+  }
+
+    ListView _buildListview() {
     return ListView.separated(
       itemCount: 1,
       separatorBuilder: (context, index) => Divider(
@@ -69,15 +101,9 @@ class Body extends StatelessWidget {
                   style: TextButton.styleFrom(
                     primary: Colors.green,
                   ),
-                  child: Text('Buy Cat'),
-                  onPressed: () {},
+                  child: Text('Buy Course'),
+                  onPressed: () => _onBuy(_viewmodel,_subject),
                 ),
-                TextButton(
-                  child: Text('Buy Cat Food'),
-                  onPressed: () {
-                    print('hello');
-                  },
-                )
               ],
             )
           ],
@@ -86,7 +112,4 @@ class Body extends StatelessWidget {
       ) 
     );
   }
-
-
-
 }

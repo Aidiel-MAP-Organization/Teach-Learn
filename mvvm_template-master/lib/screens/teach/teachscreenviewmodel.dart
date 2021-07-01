@@ -68,6 +68,9 @@ class TeachscreenViewModel extends Viewmodel {
       description: _description,
       price: int.parse(_price),
       counter: 0,
+      videoUrl: [''],
+      imageUrl: [''],
+      pdfUrl: [''],
     );
     return newSubject;
   }

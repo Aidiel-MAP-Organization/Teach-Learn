@@ -5,16 +5,21 @@ import 'package:exercise3/services/addsubject/add_service_rest.dart';
 import '../../models/user.dart';
 import '../viewmodel.dart';
 
-class HomescreenViewmodel extends Viewmodel {
+class UploadViewmodel extends Viewmodel {
   AddServiceRest get _service => dependency();
   User _user = User();
-  String _search;
+  int _index;
 
   get user => _user;
   //set user(value) => _user = value;
 
   void setUser(User value) {
     this._user = value;
+  }
+
+  get index => _index;
+  set index(value) {
+    _index = value;
   }
 
   get username => _user.login;
@@ -32,30 +37,11 @@ class HomescreenViewmodel extends Viewmodel {
     _user.password = value;
   }
 
-  get subject => _user.subject;
-  set subject(value) {
-    _user.subject = value;
-  }
-
-  get search => _search;
-  set search(value) {
-    _search = value;
-    print(search);
-  }
-
-  void printsomething(){
-    print('asdas');
-  }
-
-  Future<Subject> getSubject(subjectName) async {
-
-    final Subject result = await _service.getSearchSubject(subjectName); 
-    return result;
-  }
-
-  Future<User> updateUser(User user) async {
+  Future<Subject> updateSubject(Subject updateSubject) async {
     turnBusy();
-    final User a = await _service.updateUser(user);
+    final Subject a = await _service.updateSubject(updateSubject);
+    print(a.title);
     return a;
   }
+
 }

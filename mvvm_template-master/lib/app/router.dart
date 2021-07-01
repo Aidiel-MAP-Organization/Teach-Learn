@@ -1,13 +1,15 @@
-import 'package:exercise3/models/subject.dart';
 import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/homescreen/buyscreen.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
 import 'package:exercise3/screens/myprofile/myprofile.dart';
 import 'package:exercise3/screens/register/register.dart';
+import 'package:exercise3/screens/subjectpage/content_learn_page.dart/contentlearnpage.dart';
+import 'package:exercise3/screens/subjectpage/contentpage.dart';
 import 'package:exercise3/screens/subjectpage/subjectpage.dart';
 import 'package:exercise3/screens/teach/editsubject.dart';
 import 'package:exercise3/screens/teach/teachscreen.dart';
 import 'package:exercise3/screens/trylogin/trylogin.dart';
+import 'package:exercise3/screens/uploadFile/uploadfile.dart';
 import 'package:flutter/material.dart';
 import '../screens/login/login_screen.dart';
 import '../screens/main/main_screen.dart';
@@ -40,15 +42,26 @@ Route<dynamic> createRoute(settings) {
 
     
     case '/buyscreen':
-      return BuyScreen.route(subject: settings.arguments as Subject);
+      return BuyScreen.route(subject: settings.arguments[0], user: settings.arguments[1]);
 
      
     case '/myprofile':
       return MyProfile.route();
 
     
+    case '/uploadfile':
+    return UploadFile.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);
+
+    
     case '/subjectPage':
-    return SubjectPage.route();
+    return SubjectPage.route(index: settings.arguments[0], user: settings.arguments[1], type: settings.arguments[2]);
+
+    
+    case '/contentPage':
+      return ContentPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);
+
+    case '/contentLearnPage':
+      return ContentLearnPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);
 
   }
   return null;

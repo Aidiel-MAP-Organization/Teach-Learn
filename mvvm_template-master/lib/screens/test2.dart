@@ -1,120 +1,109 @@
 import 'package:exercise3/models/subject.dart';
-import 'package:exercise3/models/user.dart';
-import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 
+import 'homescreen/hs_viewmodel.dart';
+
 class Body extends StatefulWidget {
-  final TeachscreenViewModel _viewmodel;
-  const Body(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
+  final HomescreenViewmodel _viewmodel;
+  final Subject _subject; 
+  const Body(HomescreenViewmodel viewmodel,subject) 
+    : _viewmodel = viewmodel,_subject = subject;
 
   @override
-  _BodyState createState() => _BodyState(_viewmodel);
+  _BodyState createState() => _BodyState(_viewmodel,_subject);
 }
 
 class _BodyState extends State<Body> {
 
-  final TeachscreenViewModel _viewmodel;
+  final HomescreenViewmodel _viewmodel;
+  final Subject _subject; 
+  _BodyState(HomescreenViewmodel viewmodel,subject) 
+    : _viewmodel = viewmodel,_subject = subject;
 
-  _BodyState(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
-
-  void _onOkPressed(context, TeachscreenViewModel viewmodel) async{
+  void _onBuy(HomescreenViewmodel _viewmodel,Subject subject){
+    print(subject.title);
     
-    getUpdateUser(viewmodel);
-    // Subject newSubject = new Subject(
-    //   title: viewmodel.title,
-    //   description: viewmodel.description,
-    //   price: int.parse(viewmodel.price),
-    //   counter: 0,
-    // );
-    //  print(viewmodel.user.name);
-    // // print(newsubject.price);
-    // Subject a = await viewmodel.addnewSubject();
-    // viewmodel.user.setTeachCode(a.id);
-    // print(viewmodel.user.teach[2]);
-    // User updateUser = await viewmodel.updateUser(viewmodel.user);
-    // print(updateUser.id);
-    // viewmodel.setUser(updateUser);
-    // if(updateUser != null){
-    //   Navigator.pushNamed(context, '/register');
-    // }
-    //Navigator.pop(context, null);
-    //Navigator.pop(context, viewmodel.user);
-    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
   }
-
-  void getUpdateUser(TeachscreenViewModel viewmodel) async{
-    print(viewmodel.user.name);
-    // print(newsubject.price);
-    Subject a = await viewmodel.addnewSubject();
-    viewmodel.user.setTeachCode(a.id);
-    viewmodel.user.insertNewTeachSubject(a);
-    print(viewmodel.user.teach[2]);
-    User updateUser = await viewmodel.updateUser(viewmodel.user);
-    print(updateUser.id);
-    viewmodel.setUser(updateUser);
-    print(viewmodel.user.teach[2]);
-  }
-
-   void _onCancelPressed(context) => Navigator.pop(context, null);
 
   @override
-  Widget build(BuildContext _context) {
-
+  Widget build(BuildContext context) {
     return View(
-      viewmodel: TeachscreenViewModel(),
-      builder: (context, viewmodel, _) => ListView(
-        children: [
-          _buildTextLisTile(
-              label: 'Title',
-              value: 'Course Title',
-              onChanged: (value) => _viewmodel.title = value,
-          ),
-          _buildTextLisTile(
-              label: 'Description',
-              value: 'Course Description',
-              onChanged: (value) => _viewmodel.description = value,
-          ),
-          
-          _buildTextLisTile(
-              label: 'Price',
-              value: '0',
-              onChanged: (value) => _viewmodel.price = value,
-          ),
-          
-          _buildButtons(context,_viewmodel)
-        ],
-      )
+      viewmodel: HomescreenViewmodel(),
+      builder: (context, _viewmodel, _) => _buildListview(),
     );
-    
   }
 
-  ListTile _buildTextLisTile({label, value, onChanged}) {
-    return ListTile(
-      title: TextFormField(
-        initialValue: value,
-        decoration: InputDecoration(
-          labelText: label,
-        ),
-        onChanged: onChanged,
+    ListView _buildListview() {
+    return ListView.separated(
+      itemCount: 1,
+      separatorBuilder: (context, index) => Divider(
+        height: 0,
+        color: Colors.white,
       ),
-    );
-  }
-
-  Row _buildButtons(BuildContext context, TeachscreenViewModel viewmodel) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          child: Text('Ok'),
-          onPressed: () => _onOkPressed(context,viewmodel),
+      itemBuilder: (context, index) => Container(
+        color: Colors.white,
+        child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(44),
+          side: BorderSide(
+            color: Colors.black.withOpacity(1),
+             width: 1,
+          )
         ),
-        SizedBox(width: 10.0),
-        ElevatedButton(
-          child: Text('Cancel'),
-          onPressed: () => _onCancelPressed(context),
+        child: Column(
+          children: [
+            Stack(
+               children: [
+                Ink.image(
+                  image: NetworkImage(
+                    'https://picsum.photos/250?image=9',
+                  ),
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
+                // Icon(
+                //   FontAwesomeIcons.android,
+                // ),
+                Positioned(
+                  bottom: 16,
+                  right: 16,
+                  left: 16,
+                  child: Text(
+                    _subject.title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 40,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(16).copyWith(bottom: 0),
+              child: Text(
+                _subject.description,
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            ButtonBar(
+              alignment: MainAxisAlignment.start,
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.green,
+                  ),
+                  child: Text('Buy Course'),
+                  onPressed: () => _onBuy(_viewmodel,_subject),
+                ),
+              ],
+            )
+          ],
         ),
-      ],
+      ),
+      ) 
     );
   }
 }

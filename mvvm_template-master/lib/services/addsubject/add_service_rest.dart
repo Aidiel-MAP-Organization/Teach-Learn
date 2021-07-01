@@ -47,4 +47,14 @@ class AddServiceRest {
     return _result;
   }
 
+  Future<Subject> updateSubject(Subject updateSubject) async {
+    String id = updateSubject.id;
+    String subjectTitle = 'subjects/'+id; 
+    final json = await rest.put(subjectTitle,data: updateSubject);
+    if (json == null || json.length == 0) return null;
+    final _result = Subject.fromJson(json);
+    return _result;
+  }
+  
+
 }

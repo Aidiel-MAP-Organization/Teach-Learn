@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "629697231733",
+    "project_id": "aidel-backend-firebase-rest",
+    "storage_bucket": "aidel-backend-firebase-rest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629697231733:android:ed7a28b7f59dde3cb9f13c",
+        "android_client_info": {
+          "package_name": "com.example.exercise3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629697231733-nb4a6kmmhdhgokgcah7bbl4fdpb6i191.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDlFvdrx7cG1LWGyCmSPeGqleFC2eEEpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629697231733-nb4a6kmmhdhgokgcah7bbl4fdpb6i191.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

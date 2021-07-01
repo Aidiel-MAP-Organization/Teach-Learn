@@ -6,7 +6,12 @@ class Body extends StatelessWidget {
    final HomescreenViewmodel _viewmodel;
    const Body(HomescreenViewmodel viewmodel) : _viewmodel = viewmodel;
 
+  void _onAccess(BuildContext context, index,HomescreenViewmodel viewmodel){
+      Navigator.pushNamed(context, '/subjectPage', arguments: [index,viewmodel.user,'learn']);
+  }
+
   @override
+
   Widget build(BuildContext context) {
     return View(
       viewmodel: HomescreenViewmodel(),
@@ -75,8 +80,8 @@ class Body extends StatelessWidget {
                   style: TextButton.styleFrom(
                     primary: Colors.green,
                   ),
-                  child: Text('Buy Cat'),
-                  onPressed: () {},
+                  child: Text('Access'),
+                  onPressed: () => _onAccess(context,index,_viewmodel)
                 ),
                 TextButton(
                   child: Text('Buy Cat Food'),

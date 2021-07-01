@@ -26,8 +26,9 @@ class _BarState extends State<Bar> {
   Widget logoutIcon = Icon(FontAwesomeIcons.signOutAlt);
 
   void _onsearch(BuildContext context, HomescreenViewmodel viewmodel)async{
+    print(viewmodel.user.name);
     Subject searchSubject = await viewmodel.getSubject(viewmodel.search);
-    Navigator.pushNamed(context, '/buyscreen', arguments: searchSubject);
+    Navigator.pushNamed(context, '/buyscreen', arguments: [searchSubject,viewmodel.user]);
   }
 
   @override
@@ -54,11 +55,11 @@ class _BarState extends State<Bar> {
                       color: Colors.white,
                       fontSize: 16.0,
                     ),
-                    onChanged: (value) => {viewmodel.search = value},
+                    onChanged: (value) => {_viewmodel.search = value},
                   );
                   this.logoutIcon = IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: () => _onsearch(context, viewmodel),
+                    onPressed: () => _onsearch(context, _viewmodel),
                   );
                 }else{
                   this.cusIcon = Icon(Icons.search);

@@ -32,6 +32,14 @@ class User {
   // set setsubjectList(Subject value){
     
   // }
+  void insertNewSubject(Subject value) {
+      _subjectList.add(value);
+  }
+
+  void setSubjectCode(String value) {
+      _subject.add(value);
+  }
+
   void setTeachubjectList({Subject value}) {
       _teachSubjectList.add(value);
   }

@@ -1,6 +1,7 @@
 import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Body extends StatefulWidget {
   final TeachscreenViewModel _viewmodel;
@@ -18,9 +19,16 @@ class _BodyState extends State<Body> {
   _BodyState(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
   void _onDelete(BuildContext context, index, TeachscreenViewModel viewmodel)async{
-
-    delete(viewmodel, index);
-    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
+    if(viewmodel.user.teachSubjectList[index].counter != 0){
+      Alert(
+      context: context, 
+      title: "Delete Course Unsuccessful",
+      desc: "You can no longer delete this course because there are already people subscribe to it"
+    ).show();
+    }else{
+      delete(viewmodel, index);
+      Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
+    }
   }
 
   void delete(TeachscreenViewModel viewmodel, index)async{
@@ -33,13 +41,13 @@ class _BodyState extends State<Body> {
     viewmodel.updateUser(viewmodel.user);
   }
 
-  void _onAccess(BuildContext context){
-      Navigator.pushNamed(context, '/subjectPage');
+  void _onAccess(BuildContext context, index,TeachscreenViewModel viewmodel){
+      Navigator.pushNamed(context, '/subjectPage', arguments: [index,viewmodel.user,'teach']);
   }
-
   
   @override
   Widget build(BuildContext context) {
+
     return View(
       viewmodel: TeachscreenViewModel(),
       builder: (context, _viewmodel, _) => _buildListview(),
@@ -47,6 +55,7 @@ class _BodyState extends State<Body> {
   }
 
     ListView _buildListview() {
+      
     return ListView.separated(
       itemCount: _viewmodel.user.teachSubjectList.length,
       separatorBuilder: (context, index) => Divider(
@@ -108,7 +117,7 @@ class _BodyState extends State<Body> {
                     primary: Colors.green,
                   ),
                   child: Text('Access'),
-                  onPressed: () => _onAccess(context),
+                  onPressed: () => _onAccess(context,index,_viewmodel),
                 ),
                 TextButton(
                   child: Text('Delete'),

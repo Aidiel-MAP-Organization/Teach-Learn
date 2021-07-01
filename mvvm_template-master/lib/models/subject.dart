@@ -6,6 +6,9 @@ class Subject {
   String _description;
   int _price;
   int _counter;
+  List <dynamic> _videoUrl;
+  List <dynamic> _pdfUrl;
+  List <dynamic> _imageUrl;
 
   // ignore: unnecessary_getters_setters
   get id => _id;
@@ -23,6 +26,21 @@ class Subject {
 
   get counter => _counter;
   set counter(value) => _counter = value;
+  
+  get video => _videoUrl;
+  void setvideo(String value) {
+      _videoUrl.add(value);
+  }
+
+  get pdf => _pdfUrl;
+  void setpdf(String value) {
+      _pdfUrl.add(value);
+  }
+
+  get image => _imageUrl;
+  void setimage(String value) {
+      _imageUrl.add(value);
+  }
 
 
   Subject(
@@ -30,12 +48,18 @@ class Subject {
       String title = '',
       String description = '',
       int price = 0,
-      int counter = 0})
+      int counter = 0,
+      List videoUrl,
+      List imageUrl,
+      List pdfUrl})
       : _id = id,
         _title = title,
         _description = description,
         _counter = counter,
-        _price = price;
+        _price = price,
+        _videoUrl = videoUrl,
+        _imageUrl = imageUrl,
+        _pdfUrl = pdfUrl;
 
   Subject.copy(Subject from)
       : this(
@@ -43,7 +67,10 @@ class Subject {
             title: from.title,
             description: from.description,
             price: from.price,
-            counter: from.counter);
+            counter: from.counter,
+            videoUrl: from.video,
+            imageUrl: from.image,
+            pdfUrl: from.pdf);
 
   Subject.fromJson(Map<String, dynamic> json)
       : this(
@@ -52,6 +79,9 @@ class Subject {
           description: json['description'],
           price: json['price'],
           counter: json['counter'],
+          videoUrl: json['videoUrl'],
+          imageUrl: json['imageUrl'],
+          pdfUrl: json['pdfUrl'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -60,5 +90,8 @@ class Subject {
         'description': description,
         'price': price,
         'counter': counter,
-      };
+        'videoUrl': video,
+        'imageUrl': image,
+        'pdfUrl': pdf,
+  };
 }
