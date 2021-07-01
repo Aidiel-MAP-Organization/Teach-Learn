@@ -10,10 +10,11 @@ class ContentPage extends StatefulWidget {
   final String _uploadType;
   final User _user;
   final int _index;
-  ContentPage({uploadType, user, index}) : _uploadType = uploadType, _user=user, _index=index;
+  final String _type;
+  ContentPage({uploadType, user, index, type}) : _uploadType = uploadType, _user=user, _index=index, _type = type;
 
-  static Route route({uploadType, user, index}) =>
-      MaterialPageRoute(builder: (context) => ContentPage(uploadType: uploadType, user:user, index:index));
+  static Route route({uploadType, user, index, type}) =>
+      MaterialPageRoute(builder: (context) => ContentPage(uploadType: uploadType, user:user, index:index, type: type,));
 
   @override
   _ContentPageState createState() => _ContentPageState();
@@ -45,7 +46,7 @@ class _ContentPageState extends State<ContentPage> {
                 ),
               ),
               body: Body(mainViewmodel,widget._uploadType),
-              floatingActionButton: Float(mainViewmodel,widget._uploadType),
+              floatingActionButton: Float(mainViewmodel,widget._uploadType,widget._type),
             );
           }
         ),

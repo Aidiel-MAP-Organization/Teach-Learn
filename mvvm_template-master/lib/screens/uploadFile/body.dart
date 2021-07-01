@@ -13,9 +13,9 @@ import 'package:path/path.dart';
 class Body extends StatefulWidget {
 
   final UploadViewmodel _viewmodel;
-  final String _uploadType; 
-  const Body(UploadViewmodel viewmodel,uploadType) 
-    : _viewmodel = viewmodel, _uploadType = uploadType;
+  final String _uploadType, _type; 
+  const Body(UploadViewmodel viewmodel,uploadType,type) 
+    : _viewmodel = viewmodel, _uploadType = uploadType, _type=type;
 
   @override
   _BodyState createState() => _BodyState(_viewmodel,_uploadType);
@@ -93,6 +93,7 @@ class _BodyState extends State<Body> {
     if(_uploadType=="Photos"){
       _viewmodel.user.teachSubjectList[_viewmodel.index].setimage(urlDownload);
       _viewmodel.updateSubject(_viewmodel.user.teachSubjectList[_viewmodel.index]);
+      setState(() {});
     }
     else if(_uploadType=='Notes'){
       _viewmodel.user.teachSubjectList[_viewmodel.index].setpdf(urlDownload);
@@ -104,8 +105,14 @@ class _BodyState extends State<Body> {
       _viewmodel.updateSubject(_viewmodel.user.teachSubjectList[_viewmodel.index]);
       setState(() {});
     }
-    Navigator.pushNamed(this.context, '/subjectPage', arguments: [_viewmodel.index,_viewmodel.user]);
-    print('Download-Link: $urlDownload');
+    print(_viewmodel.index);
+    if(widget._uploadType=='teach'){
+      Navigator.pushNamed(this.context, '/teachscreen', arguments: _viewmodel.user);
+    }
+    else{
+      Navigator.pushNamed(this.context, '/homescreen', arguments: _viewmodel.user);
+    }
+    //print('Download-Link: $urlDownload');
   }
 
   Widget buildUploadStatus(UploadTask task) => StreamBuilder<TaskSnapshot>(

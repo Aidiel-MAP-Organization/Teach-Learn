@@ -58,7 +58,7 @@ Route<dynamic> createRoute(settings) {
 
     
     case '/contentPage':
-      return ContentPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);
+      return ContentPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2], type: settings.arguments[3]);
 
     case '/contentLearnPage':
       return ContentLearnPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);

@@ -6,10 +6,10 @@ import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 
 class ContentLearnPage extends StatefulWidget {
-  final String _uploadType;
+  final String _uploadType, _type;
   final User _user;
   final int _index;
-  ContentLearnPage({uploadType, user, index}) : _uploadType = uploadType, _user=user, _index=index;
+  ContentLearnPage({uploadType, user, index, type}) : _uploadType = uploadType, _user=user, _index=index, _type=type;
 
   static Route route({uploadType, user, index}) =>
       MaterialPageRoute(builder: (context) => ContentLearnPage(uploadType: uploadType, user:user, index:index));
@@ -44,7 +44,7 @@ class _ContentLearnPageState extends State<ContentLearnPage> {
                 ),
               ),
               body: Body(mainViewmodel,widget._uploadType),
-              floatingActionButton: Float(mainViewmodel,widget._uploadType),
+              //floatingActionButton: Float(mainViewmodel,widget._uploadType,widget._type),
             );
           }
         ),

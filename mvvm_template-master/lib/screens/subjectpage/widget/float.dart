@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 class Float extends StatelessWidget {
 
   final UploadViewmodel _viewmodel;
-  final String _uploadType; 
-  const Float(UploadViewmodel viewmodel,uploadType) : _viewmodel = viewmodel, _uploadType = uploadType;
+  final String _uploadType, _type; 
+  const Float(UploadViewmodel viewmodel,uploadType,type) : _viewmodel = viewmodel, _uploadType = uploadType, _type = type;
 
   void _onTap(BuildContext context, UploadViewmodel viewmodel){
-    Navigator.pushNamed(context, '/uploadfile', arguments: [_uploadType,_viewmodel.user,_viewmodel.index]);
+    Navigator.pushNamed(context, '/uploadfile', arguments: [_uploadType,_viewmodel.user,_viewmodel.index, _type]);
   }
 
   @override

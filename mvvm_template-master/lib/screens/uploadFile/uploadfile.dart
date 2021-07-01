@@ -8,13 +8,13 @@ import '../view.dart';
 
 class UploadFile extends StatefulWidget {
   
-  final String _uploadType;
+  final String _uploadType, _type;
   final User _user;
   final int _index;
-  UploadFile({uploadType, user, index}) : _uploadType = uploadType, _user=user, _index=index;
+  UploadFile({uploadType, user, index, type}) : _uploadType = uploadType, _user=user, _index=index, _type=type;
 
-  static Route route({uploadType, user, index}) =>
-      MaterialPageRoute(builder: (context) => UploadFile(uploadType: uploadType, user:user, index:index));
+  static Route route({uploadType, user, index, type}) =>
+      MaterialPageRoute(builder: (context) => UploadFile(uploadType: uploadType, user:user, index:index, type: type));
 
   @override
   _UploadFileState createState() => _UploadFileState();
@@ -45,7 +45,7 @@ class _UploadFileState extends State<UploadFile> {
                 },
                 ),
               ),
-              body: Body(mainViewmodel,widget._uploadType),
+              body: Body(mainViewmodel,widget._uploadType, widget._type),
             );
           }
         ),

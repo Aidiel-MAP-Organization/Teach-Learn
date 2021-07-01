@@ -17,7 +17,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
 
-  @override
+  
 
     singleCard(iconcode,icontitle,index){
       return Card(
@@ -46,32 +46,20 @@ class _BodyState extends State<Body> {
             
             if(widget._type == 'teach'){
               //print(widget._user.teachSubjectList[widget._index].pdf.length);
-             Navigator.pushNamed(context, '/contentPage', arguments: [icontitle,widget._user,index]);
+              print(widget._type);
+             Navigator.pushNamed(context, '/contentPage', arguments: [icontitle, widget._user, index, widget._type]);
             }
             else{
+              //print("asd");
               Navigator.pushNamed(context, '/contentLearnPage', arguments: [icontitle,widget._user,index]); 
             }
            
-            // if(icontitle=='Course Information'){
-              
-            // }
-            // else if(icontitle=='Course Review'){
-
-            // }
-            // else if(icontitle=='Videos'){
-
-            // }
-            // else if(icontitle=='Photos'){
-
-            // }
-            // else{
-
-            // }
           },
         ),
       );
     }
   
+  @override
 
   Widget build(BuildContext context) {
     return View(
