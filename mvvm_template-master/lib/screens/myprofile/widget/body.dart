@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
           SizedBox(
             height: 6,
           ),
-          _settingsCard(),
+          _settingsCard(context),
           Spacer(),
         ],
       )),
@@ -89,7 +89,7 @@ Widget _detailsCard() {
             //row for each deatails
             ListTile(
               leading: Icon(Icons.account_circle_sharp),
-              title: Text("danial"),
+              title: Text(_viewmodel.user.login),
             ),
             Divider(
               height: 0.6,
@@ -97,7 +97,7 @@ Widget _detailsCard() {
             ),
             ListTile(
               leading: Icon(Icons.account_circle_outlined),
-              title: Text("Muhammad Danial"),
+              title: Text(_viewmodel.user.name),
             ),
             Divider(
               height: 0.6,
@@ -105,7 +105,7 @@ Widget _detailsCard() {
             ),
             ListTile(
               leading: Icon(Icons.lock_outlined),
-              title: Text("4444"),
+              title: Text(_viewmodel.user.password),
             )
           ],
         ),
@@ -113,7 +113,7 @@ Widget _detailsCard() {
     );
   }
 
-  Widget _settingsCard() {
+  Widget _settingsCard(context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -124,6 +124,9 @@ Widget _detailsCard() {
             ListTile(
               leading: Icon(Icons.settings),
               title: Text("Update profile"),
+              onTap: (){
+                return _editProfile(context);
+              },
             ),
           ],
         ),
@@ -131,7 +134,15 @@ Widget _detailsCard() {
     );
   }
 
+  void _editProfile(context){
+    print(_viewmodel.user.runtimeType);
+    Navigator.pushNamed(context, '/editMyProfile',  arguments: _viewmodel.user);
+    
+  }
+
 }
+
+
 
 class HeaderCurvedContainer extends CustomPainter {
   @override
@@ -148,4 +159,3 @@ class HeaderCurvedContainer extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
-

@@ -47,7 +47,7 @@ class HomeScreen extends StatefulWidget {
                 } else if(index==1){
                   Navigator.pushNamed(context, '/teachscreen', arguments: widget._user);
                 }else{
-                   Navigator.pushNamed(context, '/myprofile');
+                   Navigator.pushNamed(context, '/myprofile',  arguments: widget._user);
                 }
                }),
               items: [

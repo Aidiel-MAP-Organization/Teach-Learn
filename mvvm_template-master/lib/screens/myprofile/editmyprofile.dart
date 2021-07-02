@@ -1,22 +1,22 @@
+import 'package:exercise3/screens/myprofile/editMyProfile/body.dart';
 import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
-import 'package:exercise3/screens/myprofile/widget/body.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:exercise3/models/user.dart';
 
-class MyProfile extends StatefulWidget {
+class EditMyProfile extends StatefulWidget {
   static Route route({user}) =>
-      MaterialPageRoute(builder: (context) => MyProfile(user: user));
+      MaterialPageRoute(builder: (context) => EditMyProfile(user: user));
 
-  final User _user;
-    MyProfile({user})
+    final User _user;
+    EditMyProfile({user})
       : _user = user;
 
   @override
-  _MyProfileState createState() => _MyProfileState();
+  _EditMyProfileState createState() => _EditMyProfileState();
 }
 
-class _MyProfileState extends State<MyProfile> {
+class _EditMyProfileState extends State<EditMyProfile> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
