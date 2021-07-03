@@ -13,6 +13,9 @@ class MyProfileViewModel extends Viewmodel{
 
   void setUser(User value) {
     this._user = value;
+    newUsername = _user.login;
+    newName = _user.name;
+    newPassword = _user.password;
   }
   get user => _user;
   
@@ -33,14 +36,14 @@ class MyProfileViewModel extends Viewmodel{
   }
 
   void setNewUser(){
-    user.name = name;
-    user.login = username;
-    user.password = password;    
+    user.name = newName;
+    user.login = newUsername;
+    user.password = newPassword;    
   }
 
-  Future<User> updateUser() async{
+  Future<void> updateUser() async{
     setNewUser();
     final newUser = await _service.updateUser(user);
-    return newUser;
+    setUser(newUser);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class Body extends StatelessWidget {
       children: [
         ElevatedButton(
           child: Text('Ok'),
-          onPressed: () => onPressedOk(),
+          onPressed: () => onPressedOk(context),
         ),
         SizedBox(width: 10.0),
         ElevatedButton(
@@ -61,8 +62,9 @@ class Body extends StatelessWidget {
     );
   }
 
-  void onPressedOk(){
+  void onPressedOk (context)async{
     _viewmodel.updateUser();
+    Navigator.pushNamed(context, '/homescreen', arguments: _viewmodel.user);
   }
 
 }
