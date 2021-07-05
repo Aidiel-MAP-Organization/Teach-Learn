@@ -1,4 +1,3 @@
-
 class Subject {
   dynamic
       _id; // Use dynamic type because json-server id is int and firestore id is string
@@ -6,12 +5,14 @@ class Subject {
   String _description;
   int _price;
   int _counter;
-  List <dynamic> _videoUrl;
-  List <dynamic> _pdfUrl;
-  List <dynamic> _imageUrl;
+  List<dynamic> _videoUrl;
+  List<dynamic> _pdfUrl;
+  List<dynamic> _imageUrl;
 
   // ignore: unnecessary_getters_setters
   get id => _id;
+
+  set done(bool done) {}
   // ignore: unnecessary_getters_setters
   set id(value) => _id = value;
 
@@ -26,22 +27,21 @@ class Subject {
 
   get counter => _counter;
   set counter(value) => _counter = value;
-  
+
   get video => _videoUrl;
   void setvideo(String value) {
-      _videoUrl.add(value);
+    _videoUrl.add(value);
   }
 
   get pdf => _pdfUrl;
   void setpdf(String value) {
-      _pdfUrl.add(value);
+    _pdfUrl.add(value);
   }
 
   get image => _imageUrl;
   void setimage(String value) {
-      _imageUrl.add(value);
+    _imageUrl.add(value);
   }
-
 
   Subject(
       {dynamic id,
@@ -82,7 +82,7 @@ class Subject {
           videoUrl: json['videoUrl'],
           imageUrl: json['imageUrl'],
           pdfUrl: json['pdfUrl'],
-      );
+        );
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -93,5 +93,5 @@ class Subject {
         'videoUrl': video,
         'imageUrl': image,
         'pdfUrl': pdf,
-  };
+      };
 }

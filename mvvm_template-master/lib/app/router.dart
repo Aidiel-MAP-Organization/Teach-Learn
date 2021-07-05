@@ -1,4 +1,5 @@
 import 'package:exercise3/models/user.dart';
+import 'package:exercise3/screens/editsubject/edit_screen.dart';
 import 'package:exercise3/screens/homescreen/buyscreen.dart';
 import 'package:exercise3/screens/homescreen/homescreen.dart';
 import 'package:exercise3/screens/myprofile/editmyprofile.dart';
@@ -15,23 +16,21 @@ import 'package:flutter/material.dart';
 import '../screens/login/login_screen.dart';
 import '../screens/main/main_screen.dart';
 
-Route<dynamic> createRoute(settings) {  
+Route<dynamic> createRoute(settings) {
   switch (settings.name) {
-    
-    
     case '/main':
       return MainScreen.route();
-    
+
     case '/login':
       return LoginScreen.route();
-  
+
     case '/register':
       return RegisterScreen.route();
 
     case '/':
     case '/trylogin':
       return TryLogin.route();
-     
+
     case '/homescreen':
       return HomeScreen.route(user: settings.arguments as User);
 
@@ -39,33 +38,46 @@ Route<dynamic> createRoute(settings) {
       return TeachScreen.route(user: settings.arguments as User);
 
     case '/editSubject':
-    return EditSubject.route(user: settings.arguments as User);
+      return EditSubject.route(user: settings.arguments as User);
 
-    
     case '/buyscreen':
-      return BuyScreen.route(subject: settings.arguments[0], user: settings.arguments[1]);
-     
+      return BuyScreen.route(
+          subject: settings.arguments[0], user: settings.arguments[1]);
+
     case '/myprofile':
       return MyProfile.route(user: settings.arguments as User);
-    
 
     case '/editMyProfile':
       return EditMyProfile.route(user: settings.arguments as User);
-    
+
     case '/uploadfile':
-    return UploadFile.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);
+      return UploadFile.route(
+          uploadType: settings.arguments[0],
+          user: settings.arguments[1],
+          index: settings.arguments[2]);
 
-    
     case '/subjectPage':
-    return SubjectPage.route(index: settings.arguments[0], user: settings.arguments[1], type: settings.arguments[2]);
+      return SubjectPage.route(
+          index: settings.arguments[0],
+          user: settings.arguments[1],
+          type: settings.arguments[2]);
 
-    
     case '/contentPage':
-      return ContentPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2], type: settings.arguments[3]);
+      return ContentPage.route(
+          uploadType: settings.arguments[0],
+          user: settings.arguments[1],
+          index: settings.arguments[2],
+          type: settings.arguments[3]);
 
     case '/contentLearnPage':
-      return ContentLearnPage.route(uploadType: settings.arguments[0], user: settings.arguments[1], index: settings.arguments[2]);
+      return ContentLearnPage.route(
+          uploadType: settings.arguments[0],
+          user: settings.arguments[1],
+          index: settings.arguments[2]);
 
+    case '/editCourse':
+      return EditCourse.route(
+          user: settings.arguments[0], index: settings.arguments[1]);
   }
   return null;
 }
