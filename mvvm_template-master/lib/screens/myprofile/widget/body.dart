@@ -105,7 +105,7 @@ Widget _detailsCard() {
             ),
             ListTile(
               leading: Icon(Icons.lock_outlined),
-              title: Text(_viewmodel.user.password),
+              title: Text(_viewmodel.user.id),
             )
           ],
         ),

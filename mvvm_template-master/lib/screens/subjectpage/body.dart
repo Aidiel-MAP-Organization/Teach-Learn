@@ -67,8 +67,6 @@ class _BodyState extends State<Body> {
       builder: (context, viewmodel, _) => GridView.count(
           crossAxisCount: 2,
           children: <Widget>[
-            singleCard(61079,'Course Information',widget._index),
-            singleCard(61079,'Course Review',widget._index),
             singleCard(61079,'Videos',widget._index),
             singleCard(61079,'Photos',widget._index),
             singleCard(61079,'Notes',widget._index),

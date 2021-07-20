@@ -1,12 +1,13 @@
 import 'package:exercise3/models/user.dart';
 import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
+import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
-  final MyProfileViewModel _viewmodel;
+  final TeachscreenViewModel _viewmodel;
   final int _index;
-  const Body({MyProfileViewModel viewmodel, index})
+  const Body({TeachscreenViewModel viewmodel, index})
       : _viewmodel = viewmodel,
         _index = index;
 
@@ -17,15 +18,15 @@ class Body extends StatelessWidget {
         _buildTextLisTile(
             label: 'Course Title',
             value: _viewmodel.user.teachSubjectList[_index].title,
-            onChanged: (value) => _viewmodel.username = value),
+            onChanged: (value) => _viewmodel.title = value),
         _buildTextLisTile(
             label: 'Course Description',
             value: _viewmodel.user.teachSubjectList[_index].description,
-            onChanged: (value) => _viewmodel.name = value),
+            onChanged: (value) => _viewmodel.description = value),
         _buildTextLisTile(
             label: 'Price',
             value: _viewmodel.user.teachSubjectList[_index].price.toString(),
-            onChanged: (value) => _viewmodel.password = value),
+            onChanged: (value) => _viewmodel.price = value),
         _buildButtons(context)
       ],
     );
@@ -61,7 +62,8 @@ class Body extends StatelessWidget {
   }
 
   void onPressedOk(context) async {
-    _viewmodel.updateUser();
+    _viewmodel.updateSubject(_viewmodel.user.teachSubjectList[_index]);
     Navigator.pushNamed(context, '/homescreen', arguments: _viewmodel.user);
   }
 }
+

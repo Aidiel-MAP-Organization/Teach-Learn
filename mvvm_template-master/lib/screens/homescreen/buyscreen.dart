@@ -35,6 +35,20 @@ class _BuyScreenState extends State<BuyScreen> {
           builder: (_, mainViewmodel, __){
             mainViewmodel.setUser(widget._user);
             return Scaffold(
+              appBar: AppBar(
+                elevation: 0.0,
+                backgroundColor: Color(0xFF00AF19),
+                leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                  onPressed: () {
+                  Navigator.pop(context);
+                },
+                ),
+              ),
+              
               body: Body(mainViewmodel,_subject),
             );
           }

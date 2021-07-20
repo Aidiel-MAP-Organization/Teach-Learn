@@ -104,6 +104,7 @@ class _BodyState extends State<Body> {
                   child: Text('Buy Course'),
                   onPressed: () => _onBuy(_viewmodel,_subject),
                 ),
+                Text('RM ' + _subject.price.toString()),
               ],
             )
           ],

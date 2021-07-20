@@ -18,31 +18,9 @@ class _BodyState extends State<Body> {
 
   _BodyState(TeachscreenViewModel viewmodel) : _viewmodel = viewmodel;
 
-  void _onOkPressed(context, TeachscreenViewModel viewmodel) async{
-    
+  void _onOkPressed(context, TeachscreenViewModel viewmodel) async{    
     getUpdateUser(viewmodel);
-    // Subject newSubject = new Subject(
-    //   title: viewmodel.title,
-    //   description: viewmodel.description,
-    //   price: int.parse(viewmodel.price),
-    //   counter: 0,
-    // );
-    //  print(viewmodel.user.name);
-    // // print(newsubject.price);
-    // Subject a = await viewmodel.addnewSubject();
-    // viewmodel.user.setTeachCode(a.id);
-    // print(viewmodel.user.teach[2]);
-    // User updateUser = await viewmodel.updateUser(viewmodel.user);
-    // print(updateUser.id);
-    // viewmodel.setUser(updateUser);
-    // if(updateUser != null){
-    //   Navigator.pushNamed(context, '/register');
-    // }
-    //Navigator.pop(context, null);
-    //Navigator.pop(context, viewmodel.user);
-
-    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);
-    
+    Navigator.pushNamed(context, '/teachscreen', arguments: viewmodel.user);    
   }
 
   void getUpdateUser(TeachscreenViewModel viewmodel) async{

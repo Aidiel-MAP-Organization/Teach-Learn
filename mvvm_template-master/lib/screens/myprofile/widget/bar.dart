@@ -16,10 +16,6 @@ class Bar extends StatelessWidget implements PreferredSizeWidget{
         elevation: 3.0,
         actions: [
           IconButton(
-            icon: Icon(FontAwesomeIcons.search),
-            onPressed: () {},
-          ),
-          IconButton(
             icon: Icon(FontAwesomeIcons.signOutAlt),
             onPressed: () {},
           ),

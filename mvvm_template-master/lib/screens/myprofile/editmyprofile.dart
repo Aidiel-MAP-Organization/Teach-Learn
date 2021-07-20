@@ -1,5 +1,6 @@
 import 'package:exercise3/screens/myprofile/editMyProfile/body.dart';
 import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
+import 'package:exercise3/screens/myprofile/widget/bar.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:exercise3/models/user.dart';
@@ -27,6 +28,19 @@ class _EditMyProfileState extends State<EditMyProfile> {
           builder: (_, mainViewmodel, __){
             mainViewmodel.setUser(widget._user);
             return Scaffold(
+              appBar: AppBar(
+                elevation: 0.0,
+                backgroundColor: Color(0xFF00AF19),
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
               body: Body(mainViewmodel),
             );
           },

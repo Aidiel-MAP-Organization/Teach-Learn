@@ -1,5 +1,6 @@
 import 'package:exercise3/screens/editsubject/body.dart';
 import 'package:exercise3/screens/myprofile/myprofile_viewmodel.dart';
+import 'package:exercise3/screens/teach/teachscreenviewmodel.dart';
 import 'package:exercise3/screens/view.dart';
 import 'package:flutter/material.dart';
 import 'package:exercise3/models/user.dart';
@@ -25,7 +26,7 @@ class _EditCourseState extends State<EditCourse> {
       onWillPop: () => Future.value(false),
       child: SafeArea(
           child: View(
-        viewmodel: MyProfileViewModel(),
+        viewmodel: TeachscreenViewModel(),
         builder: (_, mainViewmodel, __) {
           mainViewmodel.setUser(widget._user);
           return Scaffold(

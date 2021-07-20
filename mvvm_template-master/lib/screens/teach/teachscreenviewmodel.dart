@@ -11,6 +11,11 @@ class TeachscreenViewModel extends Viewmodel {
   String _title;
   String _description;
   String _price;
+
+  String _updateTitle;
+  String _updateDescription;
+  String _updatePrice;
+
   int _counter;
 
 
@@ -44,12 +49,14 @@ class TeachscreenViewModel extends Viewmodel {
 
   get title => _title;
   set title(value) {
-    this._title = value;
+    _title = value;
+    
   }
 
   get description => _description;
   set description(value) {
     _description = value;
+    print('value');
   }
 
   get price => _price;
@@ -61,6 +68,21 @@ class TeachscreenViewModel extends Viewmodel {
   set counter(value) {
     _counter = value;
   }
+
+  get updateTitle => _updateTitle;
+  set updateTitle(value) {
+    _updateTitle = value;
+  }
+
+  get updateDescription => _updateDescription;
+  set updateDescription(value) {
+    _updateDescription = value;
+  }
+
+  get updatePrice => _updatePrice;
+  set updatePrice(value) {
+    _updatePrice = value;
+  } 
 
   Subject setnewSubject(){
     Subject newSubject = new Subject(
@@ -80,6 +102,23 @@ class TeachscreenViewModel extends Viewmodel {
     turnBusy();
     final Subject a = await _service.addSubject(m);
     return a;
+  }
+
+  Future<void> updateSubject(Subject updateSubj) async {
+    
+    if (title==null) {
+      title = updateSubj.title;
+    } 
+    if (description==null){
+      description = updateSubj.description;
+    }
+    if (price==null){
+      price = updateSubj.price.toString();
+    }
+    updateSubj.title = title;
+    updateSubj.description = description;
+   // updateSubject.price = price;
+    final a = await _service.updateSubject(updateSubj);
   }
 
   Future<User> updateUser(User user) async {
